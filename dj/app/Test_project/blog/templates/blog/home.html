@@ -1,0 +1,57 @@
+{% extends 'blog/main.html' %}
+{% block main_section %}
+  {% for post in news %}
+    <div class="alert alert-light">
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.text|striptags|truncatechars:200 }}</p>
+      <div class="row">
+        <div>
+          {% if post.autor.profile.img %}
+            <img src="{{ post.autor.profile.img.url }}" alt="{{ post.autor }}" class="user_image">
+          {% else %}
+            <img src="/picture/default.jpg" alt="{{ post.autor }}" class="user_image">
+          {% endif %}
+        </div>
+        <div class="mt-2">
+          <span class="text-muted">Дата: {{ post.date|date:"d E Y, в H:i:s" }}</span>
+            <p><b>Автор:</b> <a href="{% url 'user-news' post.autor %}">{{ post.autor }}</a></p>
+        </div>
+      </div>
+      <a href="{% url 'news-detail' post.id %}" class="btn btn-outline-warning">Читать далее</a>
+    </div>
+  {% endfor %}
+
+  {% if is_paginated %}
+    {% if page_obj.has_previous %}
+      <a href="/" class="btn btn-outline-warning">Начало</a>
+      <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-warning">Предыдущая</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+      {% if num == page_obj.number %}
+        <button class="btn btn-warning">{{ num }}</button>
+      {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a href="?page={{ num }}" class="btn btn-outline-warning">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-warning">Следующая</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-warning">Последняя</a>
+    {% endif %}
+  {% endif %}
+{% endblock main_section %}
+
+{% block aside_news_section %}
+
+  <h3><b>10 фильмов и сериалов для программистов</b></h3>
+  <img src="https://itproger.com/img/news/1477674462.jpg" class="img-thumbnail mb-1">
+  <p>
+    Когда становишься на путь программирования, очень хочется посмотреть какие-либо фильмы
+    или сериалы на эту тематику. Представляем вам подборку из 10-ти фильмов для программистов.
+  </p>
+  <a href="https://itproger.com/news/1" target="_blank">
+    <button class="btn btn-warning"> Посмотреть </button>
+  </a>
+
+{% endblock aside_news_section %}

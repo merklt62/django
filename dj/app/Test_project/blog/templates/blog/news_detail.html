@@ -1,0 +1,42 @@
+{% extends 'blog/main.html' %}
+{% block main_section %}
+
+    <div class="alert alert-light">
+      <a href="{% url 'blog-home' %}">Вернуться назад</a>
+      <h1>{{ object.title }}</h1>
+      <p>{{ object.text|safe }}</p>
+      <div class="row">
+        <div>
+          {% if object.autor.profile.img %}
+            <img src="{{ object.autor.profile.img.url }}" alt="{{ object.autor }}" class="user_image">
+          {% else %}
+            <img src="/picture/default.jpg" alt="{{ object.autor }}" class="user_image">
+          {% endif %}
+        </div>
+        <div class="mt-2">
+          <span class="text-muted">Дата: {{ object.date|date:"d E Y, в H:i:s" }}</span>
+            <p><b>Автор:</b> <a href="{% url 'user-news' object.autor %}">{{ object.autor }}</a></p>
+        </div>
+      </div>
+      {% if object.autor == user %}
+      <hr>
+        <a href="{% url 'news-update' object.id %}" class="btn btn-info">Обновить пост</a>
+        <a href="{% url 'news-delete' object.id %}" class="btn btn-danger">Удалить пост</a>
+      {% endif %}
+    </div>
+
+{% endblock main_section %}
+
+{% block aside_news_section %}
+
+  <h3><b>10 фильмов и сериалов для программистов</b></h3>
+  <img src="https://itproger.com/img/news/1477674462.jpg" class="img-thumbnail mb-1">
+  <p>
+    Когда становишься на путь программирования, очень хочется посмотреть какие-либо фильмы
+    или сериалы на эту тематику. Представляем вам подборку из 10-ти фильмов для программистов.
+  </p>
+  <a href="https://itproger.com/mews/1" target="_blank">
+    <button class="btn btn-warning"> Посмотреть </button>
+  </a>
+
+{% endblock aside_news_section %}
