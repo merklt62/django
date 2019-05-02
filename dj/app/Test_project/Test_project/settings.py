@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'go^46%5agmlux8+2zi%eu5-lmy9&!9m$6b=@39sqjffcrv&idu'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -74,7 +74,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Test_project.wsgi.application'
 
 
-# Database
+# Databasemxvwqaiattrwbvly
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
@@ -131,7 +131,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLC = True
 EMAIL_HOST_USER = 'merklt62@gmail.com'
-EMAIL_HOST_PASSWORD = 'mxvwqaiattrwbvly'
+EMAIL_HOST_PASSWORD = ''
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
